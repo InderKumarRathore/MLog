@@ -4,6 +4,7 @@
 //  Created by Inder Kumar Rathore on 08/07/13.
 //  Copyright (c) 2013 Inder Kumar Rathore. All rights reserved.
 //
+// This lib is hosted at https://github.com/InderKumarRathore/MLog
 
 /* How to use it?
  * Use MLog/MDLog differne is, one prints date and time other doesn't
