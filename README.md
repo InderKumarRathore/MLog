@@ -23,12 +23,3 @@ Fork the repo and send me the pull request :)
 ### License
 MIT
 
-
-**Free Software, Hell Yeah!**
-
-
-
-
-
-
-
