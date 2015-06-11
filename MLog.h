@@ -4,7 +4,6 @@
 //  Created by Inder Kumar Rathore on 08/07/13.
 //  Copyright (c) 2013 Inder Kumar Rathore. All rights reserved.
 //
-// This lib is hosted at https://github.com/InderKumarRathore/MLog
 
 /* How to use it?
  * Use MLog/MDLog differne is, one prints date and time other doesn't
@@ -26,26 +25,29 @@
 #ifdef ENABLE_M_LOGS
 
 // This will output showing date and time as shown by MLog
-#define MDLog(format, ...) NSLog(@"<%p> %s [#%d]| "format, self, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+#define MDLog(format, ...) NSLog(@"<%p> %s [#%d]| "format@"\n\n", self, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
 
-  #if __has_feature(objc_arc)
+#if __has_feature(objc_arc)
 
-    // This will output without showing date and time as shown by MLog
-    #define MLog(format, ...) CFShow((__bridge CFTypeRef)[NSString stringWithFormat:@"<%p> %s [#%d]| "format, self, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__])
+// This will output without showing date and time as shown by MLog
+#define MLog(format, ...) CFShow((__bridge CFTypeRef)[NSString stringWithFormat:@"<%p> %s [#%d]| "format@"\n\n", self, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__])
 
-    //This is used for plain C function where self doesn't exists
-    #define MCLog(format, ...) CFShow((__bridge CFTypeRef)[NSString stringWithFormat:@"%s [#%d]| "format, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__])
-
-  #else
-    // This will output without showing date and time as shown by MLog
-    #define MLog(format, ...) CFShow([NSString stringWithFormat:@"<%p> %s [#%d]| "format, self, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__])
-
-    //This is used for plain C function where self doesn't exists
-    #define MCLog(format, ...) CFShow([NSString stringWithFormat:@"%s [#%d]| "format, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__])
-  #endif
+//This is used for plain C function where self doesn't exists
+#define MCLog(format, ...) CFShow((__bridge CFTypeRef)[NSString stringWithFormat:@"%s [#%d]| "format@"\n\n", __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__])
 
 #else
- #define MLog(...)
- #define MDLog(...)
- #define MCLog(...)
+// This will output without showing date and time as shown by MLog
+#define MLog(format, ...) CFShow([NSString stringWithFormat:@"<%p> %s [#%d]| "format@"\n\n", self, __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__])
+
+//This is used for plain C function where self doesn't exists
+#define MCLog(format, ...) CFShow([NSString stringWithFormat:@"%s [#%d]| "format@"\n\n", __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__])
 #endif
+
+#else
+#define MLog(...)
+#define MDLog(...)
+#define MCLog(...)
+#endif
+
+#define NSLog(...) NSLog-Depricated
+
